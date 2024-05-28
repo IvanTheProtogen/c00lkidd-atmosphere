@@ -1,0 +1,116 @@
+-- C00lkidd atmosphere lol
+
+local ss = game:GetService('SoundService')
+local ws = game:GetService('Workspace')
+local plrs = game:GetService('Players')
+local lght = game:GetService('Lighting')
+
+local faces = {Enum.NormalId.Front,Enum.NormalId.Back,Enum.NormalId.Left,Enum.NormalId.Right,Enum.NormalId.Top,Enum.NormalId.Bottom}
+
+local atmo
+
+if not lght:FindFirstChildWhichIsA("Atmosphere") then
+atmo = Instance.new("Atmosphere",lght)
+else
+atmo = lght:FindFirstChildWhichIsA("Atmosphere")
+end
+
+local sky
+
+if not lght:FindFirstChildWhichIsA("Sky") then
+sky = Instance.new("Sky",lght)
+else
+sky = lght:FindFirstChildWhichIsA("Sky")
+end
+
+task.spawn(function()
+while wait() do
+
+lght.Ambient = Color3.new(0.25,0,0)
+lght.Brightness = 2
+lght.ClockTime = 0
+lght.FogStart = 0
+lght.FogEnd = 100
+lght.FogColor = Color3.new(0.25,0,0)
+
+atmo.Color = Color3.new(0.25,0,0)
+atmo.Decay = Color3.new(0.25,0,0)
+atmo.Density = 1
+atmo.Offset = 0
+
+ss.AmbientReverb = Enum.ReverbType.Arena
+ss.RespectFilteringEnabled = false
+
+sky.SkyboxBk = "rbxassetid://158118263"
+sky.SkyboxFt = "rbxassetid://158118263"
+sky.SkyboxLf = "rbxassetid://158118263"
+sky.SkyboxRt = "rbxassetid://158118263"
+sky.SkyboxDn = "rbxassetid://158118263"
+sky.SkyboxUp = "rbxassetid://158118263"
+
+sky.CelestialBodiesShown = false
+sky.StarCount = 0
+
+end
+end)
+
+local A = Instance.new("Sound",ss)
+A.SoundId = "rbxassetid://6018028320"
+A.Volume = 10
+A.Looped = false
+A.Playing = true
+
+local B = Instance.new("Sound",ss)
+B.SoundId = "rbxassetid://9039981149"
+B.Volume = 2.5
+B.Looped = true
+B.Playing = true
+
+for _,plr in pairs(plrs:GetPlayers()) do
+pcall(function()
+task.spawn(function()
+local gui = plr:WaitForChild("PlayerGui")
+
+local scrn = Instance.new("ScreenGui",gui)
+local img = Instance.new("ImageButton",scrn)
+local lbl = Instance.new("TextLabel",img)
+
+img.Image = "rbxassetid://158118263"
+img.Size = UDim2.new(1,0,1,0)
+img.BackgroundColor3 = Color3.new(0,0,0)
+
+lbl.Text = "WOMP WOMP AHHAHAHAAHAHA"
+lbl.BackgroundTransparency = 1
+lbl.BorderSizePixel = 0
+lbl.TextColor3 = Color3.new(1,1,1)
+lbl.TextSize = 24
+lbl.Size = UDim2.new(1,0,0.5,0)
+lbl.Position = UDim2.new(0,0,0.5,0)
+
+wait(7.5)
+scrn:Destroy()
+end)
+end)
+end
+
+for _,inst in pairs(ws:GetDescendants()) do
+if inst:IsA("BasePart") then
+for i,face in pairs(faces) do
+local dcl = Instance.new("Decal",inst)
+dcl.Texture = "rbxassetid://158118263"
+dcl.Face = face
+end
+Instance.new("ParticleEmitter",inst).Texture = "rbxassetid://158118263"
+end
+end
+
+ws.DescendantAdded:Connect(function(inst)
+if inst:IsA("BasePart") then
+for i,face in pairs(faces) do
+local dcl = Instance.new("Decal",inst)
+dcl.Texture = "rbxassetid://158118263"
+dcl.Face = face
+end
+Instance.new("ParticleEmitter",inst).Texture = "rbxassetid://158118263"
+end
+end)
