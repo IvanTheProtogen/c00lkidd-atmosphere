@@ -5,6 +5,13 @@ local ws = game:GetService('Workspace')
 local plrs = game:GetService('Players')
 local lght = game:GetService('Lighting')
 
+for x,y in pairs(game:GetDescendants()) do
+if y:IsA("Sound") then
+y:Destroy()
+end
+end
+wait()
+
 local faces = {Enum.NormalId.Front,Enum.NormalId.Back,Enum.NormalId.Left,Enum.NormalId.Right,Enum.NormalId.Top,Enum.NormalId.Bottom}
 
 local atmo
@@ -112,5 +119,11 @@ dcl.Texture = "rbxassetid://158118263"
 dcl.Face = face
 end
 Instance.new("ParticleEmitter",inst).Texture = "rbxassetid://158118263"
+end
+end)
+
+game.DescendantAdded:Connect(function(inst)
+if inst:IsA("Sound") then
+inst:Destroy()
 end
 end)
