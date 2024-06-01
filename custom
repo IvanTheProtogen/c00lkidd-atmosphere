@@ -30,7 +30,6 @@ lght.FogStart = 0
 lght.FogEnd = 100
 lght.FogColor = Color3.new(0.25,0,0)
 
-ss.AmbientReverb = Enum.ReverbType.Arena
 ss.RespectFilteringEnabled = false
 
 sky.SkyboxBk = "rbxassetid://"..tostring(img)
@@ -48,7 +47,7 @@ end)
 
 local B = Instance.new("Sound",ss)
 B.SoundId = "rbxassetid://"..tostring(aud)
-B.Volume = 2.5
+B.Volume = 10
 B.Looped = true
 B.Playing = true
 
