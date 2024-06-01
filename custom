@@ -23,13 +23,6 @@ end
 task.spawn(function()
 while wait() do
 
-lght.Ambient = Color3.new(0.25,0,0)
-lght.Brightness = 2
-lght.ClockTime = 0
-lght.FogStart = 0
-lght.FogEnd = 100
-lght.FogColor = Color3.new(0.25,0,0)
-
 ss.RespectFilteringEnabled = false
 
 sky.SkyboxBk = "rbxassetid://"..tostring(img)
